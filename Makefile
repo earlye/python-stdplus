@@ -16,8 +16,12 @@ clean:
 	rm -rf stdplus.egg-info
 
 .PHONY : deploy
-deploy: clean install
+deploy: clean install publish
 	twine upload $(TWINE_ARGS) dist/*
+
+.PHONY: publish
+publish:
+	$(MAKE) -C docs publish
 
 .PHONY : sdist
 sdist:
