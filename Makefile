@@ -1,4 +1,4 @@
-gVERSION=$(shell grep version= setup.py | sed "s/^[ ]*version='//g;s/',$$//g")
+VERSION=$(shell grep version= setup.py | sed "s/^[ ]*version='//g;s/',$$//g")
 TWINE_ARGS=-u $(shell get-user.sh.php -r pypi.python.org.json) -p $(shell get-password.sh.php -r pypi.python.org.json)
 
 $(info VERSION:$(VERSION))
