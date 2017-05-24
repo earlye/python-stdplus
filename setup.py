@@ -30,13 +30,13 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.0.39',
+    version='0.0.40',
 
-    description='A shell for AWS',
+    description='A collection of utilities for python',
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/earlye/nephele',
+    url='http://python.stdplus.org/',
 
     # Author details
     author='Early Ehlinger',
@@ -71,7 +71,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='AWS usage',
+    keywords='libraries',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
