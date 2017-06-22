@@ -3,6 +3,7 @@ from _sshConfig import *
 from _writefile import writefile
 from _fexecvp import fexecvp
 from _fnmatches import fnmatches
+from _removeRoot import removeRoot
 from _run_cmd import *
 from _defaultify import *
 from _isInt import *
@@ -25,6 +26,7 @@ __all__ = [
     'readSshConfig',
     'readfile',
     'removeKnownHosts',
+    'removeRoot',
     'resetKnownHost',
     'resetKnownHosts',
     'run',

@@ -106,18 +106,21 @@ def keyscanHost(ip):
     sshHost = getSshHost(sshConfig,ip)
     proxyCommand = ''
     if sshHost and 'ProxyCommand' in sshHost.settings and sshHost.settings['ProxyCommand'] and sshHost.settings['ProxyCommand'][0].value:
-        proxyCommand = sshHost.settings['ProxyCommand'][0].value.replace("-W %h:%p",'')
+        proxyCommand = sshHost.settings['ProxyCommand'][0].value.replace("-W %h:%p",'')    
     global knownHostsLock
     with knownHostsLock:
-        run("{} ssh-keyscan -H {} >> ~/.ssh/known_hosts".format(proxyCommand, ip))    
+        run("touch ~/.ssh/known_hosts && {} ssh-keyscan -H {} >> ~/.ssh/known_hosts 2> /dev/null".format(proxyCommand, ip))    
 
 def removeKnownHosts(ips):
     if not ips:
         return
+    
     args = []
     for ip in ips:
         args.append("-R {}".format(ip))
     global knownHostsLock
     with knownHostsLock:
+        if not os.path.exists(os.path.expanduser('~/.ssh/known_hosts')):
+            return
         run("ssh-keygen {}".format(" ".join(args)))
 
