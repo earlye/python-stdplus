@@ -84,8 +84,10 @@ def parseSshConfig(contents):
     return rootBlock
 
 def readSshConfig(path=os.path.expanduser('~/.ssh/config')):
-    config = readfile(path)
-    return parseSshConfig(config)
+    if os.path.exists(path):
+        config = readfile(path)
+        return parseSshConfig(config)
+    return SshConfig()
 
 def getSshHost(sshConfig,host):
     for pattern,settings in sshConfig.hosts.iteritems():
