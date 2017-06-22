@@ -111,7 +111,7 @@ def keyscanHost(ip):
         proxyCommand = sshHost.settings['ProxyCommand'][0].value.replace("-W %h:%p",'')    
     global knownHostsLock
     with knownHostsLock:
-        run("touch ~/.ssh/known_hosts && {} ssh-keyscan -H {} >> ~/.ssh/known_hosts 2> /dev/null".format(proxyCommand, ip))    
+        run("mkdir -p ~/.ssh && touch ~/.ssh/known_hosts && {} ssh-keyscan -H {} >> ~/.ssh/known_hosts 2> /dev/null".format(proxyCommand, ip))    
 
 def removeKnownHosts(ips):
     if not ips:
