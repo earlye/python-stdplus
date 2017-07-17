@@ -1,3 +1,4 @@
+from _atomicCount import AtomicCount
 from _readfile import readfile
 from _sshConfig import *
 from _writefile import writefile
@@ -11,6 +12,7 @@ from _isInt import *
 import re
 
 __all__ = [
+    'AtomicCount',
     'contains',
     'defaultify',
     'defaultify',
