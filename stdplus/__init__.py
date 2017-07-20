@@ -8,6 +8,8 @@ from _removeRoot import removeRoot
 from _run_cmd import *
 from _defaultify import *
 from _isInt import *
+from epoch import epoch
+from timestamp import timestamp
 
 import re
 
@@ -19,6 +21,7 @@ __all__ = [
     'defaultifyDict',
     'defaultifyDict',
     'elipsifyMiddle',
+    'epoch',
     'fexecvp',
     'fnmatches',
     'getSshHost',
@@ -33,6 +36,7 @@ __all__ = [
     'resetKnownHosts',
     'run',
     'run_cmd',
+    'timestamp',
     'writefile'
 ]
 
