@@ -1,12 +1,13 @@
-from _readfile import readfile
-from _sshConfig import *
-from _writefile import writefile
-from _fexecvp import fexecvp
-from _fnmatches import fnmatches
-from _removeRoot import removeRoot
-from _run_cmd import *
-from _defaultify import *
-from _isInt import *
+from stdplus._readfile import readfile
+from stdplus._sshConfig import *
+from stdplus._writefile import writefile
+from stdplus._fexecvp import fexecvp
+from stdplus._fnmatches import fnmatches
+from stdplus._removeRoot import removeRoot
+from stdplus._run_cmd import *
+from stdplus._defaultify import *
+from stdplus._isInt import *
+from stdplus._isString import *
 
 import re
 
@@ -22,6 +23,7 @@ __all__ = [
     'getSshHost',
     'isInt',
     'isIp',
+    'isString',
     'keyscanHost',
     'readSshConfig',
     'readfile',

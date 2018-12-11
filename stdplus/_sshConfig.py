@@ -4,8 +4,8 @@ import fnmatch
 import threading
 
 from pprint import pprint
-from stdplus import readfile
-from _run_cmd import run
+from stdplus._readfile import readfile
+from stdplus._run_cmd import run
 
 knownHostsLock = threading.Lock()
 
@@ -38,7 +38,7 @@ class WithSettings(SshConfigBlock):
         if not setting.name in self.settings:
             self.settings[setting.name] = []
         self.settings[setting.name].append(setting)
-        
+
 class Host(WithSettings):
     def __init__(self,line,lineNumber):
         WithSettings.__init__(self,line,lineNumber)
@@ -80,7 +80,7 @@ def parseSshConfig(contents):
             currentBlock.append(setting)
             if isinstance(currentBlock,Host) or isinstance(currentBlock,Match):
                 currentBlock.addSetting(setting)
-            
+
     return rootBlock
 
 def readSshConfig(path=os.path.expanduser('~/.ssh/config')):
@@ -91,7 +91,7 @@ def getSshHost(sshConfig,host):
     for pattern,settings in sshConfig.hosts.iteritems():
         if fnmatch.fnmatch(host,pattern):
             return settings
-        
+
 def resetKnownHost(ip):
     removeKnownHosts([ip])
     keyscanHost(ip)
@@ -106,15 +106,15 @@ def keyscanHost(ip):
     sshHost = getSshHost(sshConfig,ip)
     proxyCommand = ''
     if sshHost and 'ProxyCommand' in sshHost.settings and sshHost.settings['ProxyCommand'] and sshHost.settings['ProxyCommand'][0].value:
-        proxyCommand = sshHost.settings['ProxyCommand'][0].value.replace("-W %h:%p",'')    
+        proxyCommand = sshHost.settings['ProxyCommand'][0].value.replace("-W %h:%p",'')
     global knownHostsLock
     with knownHostsLock:
-        run("touch ~/.ssh/known_hosts && {} ssh-keyscan -H {} >> ~/.ssh/known_hosts 2> /dev/null".format(proxyCommand, ip))    
+        run("touch ~/.ssh/known_hosts && {} ssh-keyscan -H {} >> ~/.ssh/known_hosts 2> /dev/null".format(proxyCommand, ip))
 
 def removeKnownHosts(ips):
     if not ips:
         return
-    
+
     args = []
     for ip in ips:
         args.append("-R {}".format(ip))
@@ -123,4 +123,3 @@ def removeKnownHosts(ips):
         if not os.path.exists(os.path.expanduser('~/.ssh/known_hosts')):
             return
         run("ssh-keygen {}".format(" ".join(args)))
-
