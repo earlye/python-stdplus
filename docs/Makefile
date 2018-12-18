@@ -10,7 +10,11 @@ serve : .build
 
 clean :
 	-rm -rf .build
+	-rm -rf .setup
 
-.PHONY: .build
-.build : 
+.build : .setup
 	jekyll build --destination $@
+
+.setup :
+	bundle install
+	touch $@
