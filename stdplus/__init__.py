@@ -1,12 +1,13 @@
-from _readfile import readfile
-from _sshConfig import *
-from _writefile import writefile
-from _fexecvp import fexecvp
-from _fnmatches import fnmatches
-from _removeRoot import removeRoot
-from _run_cmd import *
-from _defaultify import *
-from _isInt import *
+from stdplus._readfile import readfile
+from stdplus._sshConfig import *
+from stdplus._writefile import writefile
+from stdplus._fexecvp import fexecvp
+from stdplus._fnmatches import fnmatches
+from stdplus._removeRoot import removeRoot
+from stdplus._run_cmd import *
+from stdplus._defaultify import *
+from stdplus._isInt import *
+from stdplus._isString import *
 
 import re
 
@@ -22,6 +23,7 @@ __all__ = [
     'getSshHost',
     'isInt',
     'isIp',
+    'isString',
     'keyscanHost',
     'readSshConfig',
     'readfile',
@@ -51,7 +53,7 @@ def elipsifyMiddle(s, n):
         # string is already short-enough
         return s
     # half of the size, minus the 3 .'s
-    n_2 = int(n) / 2 - 3
+    n_2 = round(int(n) / 2 - 3)
     # whatever's left
-    n_1 = n - n_2 - 3
+    n_1 = round(n - n_2 - 3)
     return '{0}...{1}'.format(s[:n_1], s[-n_2:])
