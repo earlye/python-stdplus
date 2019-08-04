@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: POSIX.STDPLUS.ORG
+title: PYTHON.STDPLUS.ORG
 email: earlye+python.stdplus.org@gmail.com
 description: Posix is a Stdplus library to provide a wrapper around POSIX stuff
 baseurl: "" # the subpath of your site, e.g. /blog
